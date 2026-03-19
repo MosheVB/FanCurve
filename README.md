@@ -8,6 +8,10 @@ This packages [RoversX/nvidia_fan_control_linux](https://github.com/RoversX/nvid
 - [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose v2](https://docs.docker.com/compose/)
 - [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) so `docker run --gpus all` works
 
+## Troubleshooting
+
+If the container exits in a restart loop with `NVMLError_NoPermission` on `nvmlDeviceSetFanSpeed_v2`, the Compose file enables **`privileged: true`** so NVML can change fan speed. That matches what many setups need for manual fan control inside Docker.
+
 ## Configure the curve
 
 Edit `nvidia_fan_control.py` in this directory (`temperature_points`, `fan_speed_points`, `gpus`, etc.), then rebuild:

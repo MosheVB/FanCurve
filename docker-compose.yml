@@ -4,6 +4,8 @@ services:
     image: fancurve-nvidia-fan-control:latest
     container_name: nvidia-fan-control
     restart: unless-stopped
+    # NVML fan control needs broader device access than the default GPU mount.
+    privileged: true
     gpus: all
     environment:
       NVIDIA_VISIBLE_DEVICES: all
