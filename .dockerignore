@@ -1,0 +1,5 @@
+.git
+*.md
+systemd
+install-service.sh
+.env*

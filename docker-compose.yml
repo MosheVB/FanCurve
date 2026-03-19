@@ -1,0 +1,10 @@
+services:
+  nvidia-fan-control:
+    build: .
+    image: fancurve-nvidia-fan-control:latest
+    container_name: nvidia-fan-control
+    restart: unless-stopped
+    gpus: all
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
