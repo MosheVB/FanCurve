@@ -47,4 +47,24 @@ sudo systemctl status nvidia-fan-control.service
 journalctl -u nvidia-fan-control.service -f
 ```
 
+## Git / GitHub
+
+This repo is initialized with `main` as the default branch. To create the remote on GitHub and push (needs [GitHub CLI](https://cli.github.com/) and a one-time login):
+
+```bash
+gh auth login
+./scripts/create-github-remote-and-push.sh
+```
+
+For a private repository: `GITHUB_REPO_VISIBILITY=private ./scripts/create-github-remote-and-push.sh`
+
+To use another repo name: `GITHUB_REPO_NAME=my-fan-curve ./scripts/create-github-remote-and-push.sh`
+
+If you prefer the website: create an **empty** repository (no README/license), then:
+
+```bash
+git remote add origin git@github.com:YOUR_USER/FanCurve.git
+git push -u origin main
+```
+
 Credit: upstream script and behavior are from [nvidia_fan_control_linux](https://github.com/RoversX/nvidia_fan_control_linux).
