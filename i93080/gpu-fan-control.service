@@ -1,0 +1,14 @@
+[Unit]
+Description=Drive case fan headers (5) from NVIDIA GPU temperature
+After=systemd-modules-load.service gpu-power-limit.service
+
+[Service]
+Environment=FAN_PWM=5
+ExecStart=/usr/local/bin/gpu-fan-control
+# Even after a SIGKILL, hand the channels back to BIOS auto mode.
+ExecStopPost=/bin/sh -c 'for h in /sys/class/hwmon/hwmon*; do grep -q nct67 $h/name || continue; for c in 5; do echo 5 > $h/pwm${c}_enable; done; done'
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
