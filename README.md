@@ -50,13 +50,3 @@ Check:
 sudo systemctl status nvidia-fan-control.service
 journalctl -u nvidia-fan-control.service -f
 ```
-
-## Deploy (code hub, ms01)
-
-Work on `dev` in `ms01:~/hub/FanCurve`; `~/claude-env/bin/promote FanCurve` fast-forwards `main` and runs
-`deploy/deploy.sh`. The container runs from the live checkout `~/Workspace/FanCurve` (the boot unit's
-WorkingDirectory); the script fast-forwards that checkout (refusing if it has uncommitted tracked changes), and
-only if container files changed runs `docker compose build && docker compose up -d` there, then checks the
-container is running with no `NVMLError_NoPermission`. Never run compose from `~/hub` (same container_name).
-Changes under `i93080/` or to the boot unit need sudo, so it only prints the commands. `-- --rebuild` forces a
-rebuild.
