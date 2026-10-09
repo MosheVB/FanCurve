@@ -50,3 +50,15 @@ Check:
 sudo systemctl status nvidia-fan-control.service
 journalctl -u nvidia-fan-control.service -f
 ```
+
+## Deploy
+
+`dev` is where work happens; `main` is what is deployed. On ms01:
+
+```bash
+deploy FanCurve            # fast-forward main to dev, then run deploy/deploy.sh
+deploy FanCurve --dry-run  # show what would go out
+```
+
+`deploy` lives in `~/nomad-cluster/bin`. What the deploy step does is described at the top of
+`deploy/deploy.sh`.
